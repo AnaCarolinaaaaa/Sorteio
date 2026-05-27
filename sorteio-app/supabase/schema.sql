@@ -44,13 +44,17 @@ create index if not exists idx_tickets_status on tickets(status);
 alter table raffles enable row level security;
 alter table tickets enable row level security;
 
--- Política: qualquer um pode LER sorteios
-create policy "Anyone can read raffles"
-  on raffles for select using (true);
+-- Políticas para a tabela 'raffles'
+create policy "Anyone can read raffles" on raffles for select using (true);
+create policy "Anyone can insert raffles" on raffles for insert with check (true);
+create policy "Anyone can update raffles" on raffles for update using (true);
+create policy "Anyone can delete raffles" on raffles for delete using (true);
 
--- Política: qualquer um pode LER bilhetes (número e status apenas)
-create policy "Anyone can read tickets"
-  on tickets for select using (true);
+-- Políticas para a tabela 'tickets'
+create policy "Anyone can read tickets" on tickets for select using (true);
+create policy "Anyone can insert tickets" on tickets for insert with check (true);
+create policy "Anyone can update tickets" on tickets for update using (true);
+create policy "Anyone can delete tickets" on tickets for delete using (true);
 
 -- Política: service_role pode fazer tudo (usado pelo servidor)
 -- (service_role bypassa RLS automaticamente)
