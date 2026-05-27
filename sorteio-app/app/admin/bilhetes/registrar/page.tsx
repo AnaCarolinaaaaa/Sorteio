@@ -32,7 +32,7 @@ export default function RegistrarBilhetePage() {
         .from('raffles').select('*')
         .in('status', ['open', 'closed'])
         .order('created_at', { ascending: false })
-        .limit(1).single()
+        .limit(1).maybeSingle()
 
       if (raffleData) {
         setRaffle(raffleData)

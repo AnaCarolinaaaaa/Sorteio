@@ -38,7 +38,7 @@ export default function HomePage() {
         .in('status', ['open', 'closed', 'drawn'])
         .order('created_at', { ascending: false })
         .limit(1)
-        .single()
+        .maybeSingle()
 
       if (raffleData) {
         setRaffle(raffleData)

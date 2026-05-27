@@ -24,7 +24,7 @@ export default function DashboardPage() {
     const supabase = createClient()
     const { data: raffleData } = await supabase
       .from('raffles').select('*')
-      .order('created_at', { ascending: false }).limit(1).single()
+      .order('created_at', { ascending: false }).limit(1).maybeSingle()
 
     if (raffleData) {
       setRaffle(raffleData)
