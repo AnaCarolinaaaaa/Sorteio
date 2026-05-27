@@ -68,5 +68,11 @@ insert into storage.buckets (id, name, public)
 values ('comprovantes', 'comprovantes', false)
 on conflict (id) do nothing;
 
--- Política: apenas service_role acessa os comprovantes
--- (bucket privado, acesso apenas pelo backend)
+-- Políticas para o bucket 'comprovantes' no schema do Storage
+-- Permitir upload público de comprovantes
+create policy "Allow public uploads to comprovantes"
+  on storage.objects for insert with check (bucket_id = 'comprovantes');
+
+-- Permitir leitura pública dos comprovantes (necessário para o admin ver o comprovante no navegador)
+create policy "Allow public read of comprovantes"
+  on storage.objects for select using (bucket_id = 'comprovantes');
