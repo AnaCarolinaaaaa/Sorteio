@@ -610,12 +610,12 @@ export default function HomePage() {
                       border: '1px solid var(--border)'
                     }}>
                       <code style={{ fontSize: '0.85rem', color: 'var(--gold)', fontWeight: 700, fontFamily: 'monospace' }}>
-                        sorteioapp@pix.com.br
+                        884.268.661-15
                       </code>
                       <button
                         type="button"
                         onClick={() => {
-                          navigator.clipboard.writeText('sorteioapp@pix.com.br')
+                          navigator.clipboard.writeText('884.268.661-15')
                           alert('Chave Pix copiada com sucesso!')
                         }}
                         style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
@@ -623,7 +623,7 @@ export default function HomePage() {
                         <Copy size={16} color="var(--text-secondary)" />
                       </button>
                     </div>
-                    <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginTop: '0.4rem', textAlign: 'center' }}>Tipo: E-mail · Nome: Sorteio App</p>
+                    <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginTop: '0.4rem', textAlign: 'center' }}>Tipo: CPF · Nome: Sorteio App</p>
                   </div>
 
                   {/* Upload do comprovante */}
