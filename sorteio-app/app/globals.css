@@ -227,6 +227,18 @@ html, body {
   color: var(--text-muted);
   border-color: var(--border);
 }
+.ticket-available:hover {
+  border-color: var(--accent-light);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.ticket-selected {
+  background: var(--accent) !important;
+  color: white !important;
+  border-color: var(--accent-light) !important;
+  box-shadow: 0 0 14px var(--accent-glow) !important;
+  transform: scale(1.05) !important;
+}
 .ticket-paid {
   background: rgba(16,185,129,0.15);
   color: var(--green);
