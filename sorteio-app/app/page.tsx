@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Raffle, Ticket } from '@/lib/types'
-import { Trophy, Ticket as TicketIcon, Users, TrendingUp, Copy, Check, X, Upload, ArrowLeft, ArrowRight } from 'lucide-react'
+import { Trophy, Heart, Ticket as TicketIcon, Users, TrendingUp, Copy, Check, X, Upload, ArrowLeft, ArrowRight, FileText } from 'lucide-react'
 import Link from 'next/link'
 
 export default function HomePage() {
@@ -63,9 +63,12 @@ export default function HomePage() {
 
   if (!raffle) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-        <Trophy size={56} color="var(--text-muted)" />
-        <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>Nenhum sorteio ativo no momento.</p>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '2rem', textAlign: 'center' }}>
+        <Heart size={56} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.8 }} />
+        <h1 className="gradient-text" style={{ fontSize: '1.8rem', fontWeight: 800 }}>Rifa Solidária</h1>
+        <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: 500 }}>
+          Nenhuma ação solidária ativa no momento. Por favor, acesse o painel administrativo para cadastrar a campanha para a cirurgia no ombro.
+        </p>
         <Link href="/admin" className="btn-secondary">Área Administrativa</Link>
       </div>
     )
@@ -251,8 +254,8 @@ export default function HomePage() {
         zIndex: 50,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <Trophy size={22} color="var(--gold)" />
-          <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)' }}>Sorteio Virtual</span>
+          <Heart size={22} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.9 }} />
+          <span style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-primary)' }}>Rifa Solidária</span>
         </div>
         <Link href="/admin" className="btn-secondary" style={{ padding: '0.4rem 1rem', fontSize: '0.8rem' }}>
           Painel Admin
@@ -262,39 +265,63 @@ export default function HomePage() {
       <main style={{ maxWidth: 760, margin: '0 auto', padding: '1.5rem 1rem' }}>
         
         {/* Prize Hero */}
-        <div className="glass-card glow-accent fade-in" style={{ padding: '2rem 1.5rem', marginBottom: '1.5rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div className="glass-card glow-accent fade-in" style={{ padding: '2.5rem 1.5rem', marginBottom: '1.5rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
           <div style={{
             position: 'absolute', inset: 0,
-            background: 'radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 65%)',
+            background: 'radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.15) 0%, transparent 65%)',
             pointerEvents: 'none'
           }} />
-          {raffle.prize_image && (
-            <img
-              src={raffle.prize_image}
-              alt={raffle.prize}
-              style={{ width: 120, height: 120, objectFit: 'cover', borderRadius: 16, marginBottom: '1.25rem', border: '3px solid var(--gold)', boxShadow: '0 0 32px rgba(245,158,11,0.3)' }}
-            />
-          )}
-          {!raffle.prize_image && (
-            <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', border: '2px solid var(--gold)' }}>
-              <Trophy size={36} color="var(--gold)" />
-            </div>
-          )}
-          <span className={`badge ${raffle.status === 'open' ? 'badge-open' : raffle.status === 'closed' ? 'badge-closed' : 'badge-drawn'}`} style={{ marginBottom: '0.75rem' }}>
+          
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '0.4rem 1rem', borderRadius: 999, marginBottom: '1.25rem' }}>
+            <Heart size={14} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.9 }} />
+            <span style={{ color: 'var(--red)', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.05em', textTransform: 'uppercase' }}>Rifa Solidária</span>
+          </div>
+
+          <h1 className="gradient-text" style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', lineHeight: 1.2, maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto' }}>
+            Ajude o Fernando a fazer sua cirurgia no ombro
+          </h1>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <a 
+              href="/laudo.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-secondary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.6rem 1.2rem',
+                fontSize: '0.85rem',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                color: 'var(--text-primary)',
+                transition: 'all 0.2s',
+                textDecoration: 'none',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.borderColor = 'var(--accent-light)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.borderColor = 'var(--border)';
+              }}
+            >
+              <FileText size={16} color="var(--accent-light)" />
+              Ver Laudo Médico
+            </a>
+          </div>
+
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: 550, marginLeft: 'auto', marginRight: 'auto', fontSize: '1rem', fontWeight: 500, lineHeight: 1.45 }}>
+            Faça essa boa ação e concorra a uma smart tv 75 polegadas ou o valor dela no pix.
+          </p>
+
+          <span className={`badge ${raffle.status === 'open' ? 'badge-open' : raffle.status === 'closed' ? 'badge-closed' : 'badge-drawn'}`} style={{ fontSize: '0.75rem' }}>
             {raffle.status === 'open' ? '🟢 Aberto para Reservas' : raffle.status === 'closed' ? '🟡 Encerrado' : '🏆 Realizado'}
           </span>
-          <h1 className="gradient-text" style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.5rem', lineHeight: 1.2 }}>
-            {raffle.title}
-          </h1>
-          {raffle.description && (
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', maxWidth: 500, margin: '0 auto 1rem', fontSize: '0.9rem' }}>
-              {raffle.description}
-            </p>
-          )}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--bg-elevated)', padding: '0.5rem 1rem', borderRadius: 8, border: '1px solid rgba(245,158,11,0.2)' }}>
-            <Trophy size={14} color="var(--gold)" />
-            <span style={{ color: 'var(--gold-light)', fontWeight: 700, fontSize: '0.85rem' }}>Prêmio: {raffle.prize}</span>
-          </div>
         </div>
 
         {/* Sorteado Banner */}
@@ -311,22 +338,6 @@ export default function HomePage() {
             )}
           </div>
         )}
-
-        {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          {[
-            { icon: <TicketIcon size={16} />, label: 'Bilhetes', value: raffle.total_tickets, color: 'var(--accent-light)' },
-            { icon: <Users size={16} />, label: 'Pagos', value: soldTickets, color: 'var(--green)' },
-            { icon: <TrendingUp size={16} />, label: 'Reservados', value: reservedTickets, color: 'var(--gold)' },
-            { icon: <TicketIcon size={16} />, label: 'Disponíveis', value: raffle.total_tickets - soldTickets - reservedTickets, color: 'var(--text-muted)' },
-          ].map((stat, i) => (
-            <div key={i} className="glass-card" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-              <div style={{ color: stat.color, opacity: 0.8 }}>{stat.icon}</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: stat.color }}>{stat.value}</div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
 
         {/* Progress bar */}
         <div className="glass-card" style={{ padding: '1.25rem', marginBottom: '1.5rem' }}>
@@ -609,13 +620,13 @@ export default function HomePage() {
                       borderRadius: 8,
                       border: '1px solid var(--border)'
                     }}>
-                      <code style={{ fontSize: '0.85rem', color: 'var(--gold)', fontWeight: 700, fontFamily: 'monospace' }}>
-                        884.268.661-15
+                       <code style={{ fontSize: '0.85rem', color: 'var(--gold)', fontWeight: 700, fontFamily: 'monospace' }}>
+                        fernandoarcanjodacosta@gmail.com
                       </code>
                       <button
                         type="button"
                         onClick={() => {
-                          navigator.clipboard.writeText('884.268.661-15')
+                          navigator.clipboard.writeText('fernandoarcanjodacosta@gmail.com')
                           alert('Chave Pix copiada com sucesso!')
                         }}
                         style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
@@ -623,7 +634,7 @@ export default function HomePage() {
                         <Copy size={16} color="var(--text-secondary)" />
                       </button>
                     </div>
-                    <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginTop: '0.4rem', textAlign: 'center' }}>Tipo: CPF · Nome: Sorteio App</p>
+                    <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginTop: '0.4rem', textAlign: 'center' }}>Tipo: E-mail · Nome: Fernando Arcanjo da Costa</p>
                   </div>
 
                   {/* Upload do comprovante */}

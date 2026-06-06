@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
-import { Trophy, ArrowLeft, DollarSign } from 'lucide-react'
+import { Trophy, ArrowLeft, DollarSign, Heart } from 'lucide-react'
 import Link from 'next/link'
 
 function CurrencyInput({ id, name, value, onChange, placeholder }: {
@@ -84,26 +84,26 @@ export default function NovoSorteioPage() {
           <ArrowLeft size={16} />
         </Link>
         <div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>Criar Novo Sorteio</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Configure o sorteio, prêmio e quantidade de bilhetes</p>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>Criar Nova Rifa Solidária</h1>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Configure os detalhes da ação solidária e bilhetes</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
         <div className="glass-card" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <p style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Informações do Sorteio</p>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Informações da Rifa Solidária</p>
 
           <div>
-            <label className="label" htmlFor="title">Nome do Sorteio *</label>
+            <label className="label" htmlFor="title">Nome da Ação Solidária *</label>
             <input id="title" name="title" type="text" className="input-field"
-              placeholder="Ex: Sorteio de Natal 2025"
+              placeholder="Ex: Rifa Solidária - Cirurgia no Ombro"
               value={form.title} onChange={handleChange} required />
           </div>
 
           <div>
             <label className="label" htmlFor="description">Descrição</label>
             <textarea id="description" name="description" className="input-field"
-              placeholder="Descrição opcional..."
+              placeholder="Ex: Ação beneficente para arrecadar fundos para a cirurgia no ombro de Fernando Arcanjo da Costa."
               value={form.description} onChange={handleChange}
               rows={2} style={{ resize: 'vertical' }} />
           </div>
@@ -193,7 +193,7 @@ export default function NovoSorteioPage() {
         )}
 
         <button type="submit" className="btn-primary" disabled={loading} style={{ justifyContent: 'center', padding: '0.85rem' }}>
-          {loading ? <div className="spinner" /> : 'Criar Sorteio'}
+          {loading ? <div className="spinner" /> : 'Criar Rifa Solidária'}
         </button>
       </form>
     </div>

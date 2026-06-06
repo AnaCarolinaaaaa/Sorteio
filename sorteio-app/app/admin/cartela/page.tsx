@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Raffle, Ticket } from '@/lib/types'
-import { Search, Grid3X3, RefreshCw, Trophy } from 'lucide-react'
+import { Search, Grid3X3, RefreshCw, Trophy, Heart } from 'lucide-react'
 import Link from 'next/link'
 
 type TicketMap = Record<number, Ticket>
@@ -147,9 +147,9 @@ export default function CartelaPage() {
 
   if (!raffle) return (
     <div style={{ textAlign: 'center', marginTop: '5rem' }}>
-      <Grid3X3 size={52} color="var(--text-muted)" style={{ marginBottom: '1rem' }} />
-      <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Nenhum sorteio encontrado.</p>
-      <Link href="/admin/sorteios/novo" className="btn-primary">Criar Sorteio</Link>
+      <Heart size={52} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.8, marginBottom: '1rem' }} />
+      <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Nenhuma rifa solidária encontrada.</p>
+      <Link href="/admin/sorteios/novo" className="btn-primary">Criar Rifa Solidária</Link>
     </div>
   )
 

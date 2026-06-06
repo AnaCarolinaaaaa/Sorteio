@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Raffle } from '@/lib/types'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Upload, User, FileText, Phone, Loader2, X, Plus } from 'lucide-react'
+import { ArrowLeft, Upload, User, FileText, Phone, Loader2, X, Plus, Heart } from 'lucide-react'
 import Link from 'next/link'
 
 export default function RegistrarBilhetePage() {
@@ -156,8 +156,9 @@ export default function RegistrarBilhetePage() {
 
   if (!raffle) return (
     <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-      <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>Nenhum sorteio ativo.</p>
-      <Link href="/admin/sorteios/novo" className="btn-primary">Criar Sorteio</Link>
+      <Heart size={52} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.8, marginBottom: '1rem' }} />
+      <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>Nenhuma rifa solidária ativa.</p>
+      <Link href="/admin/sorteios/novo" className="btn-primary">Criar Rifa Solidária</Link>
     </div>
   )
 

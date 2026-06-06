@@ -5,8 +5,8 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sistema de Sorteio",
-  description: "Gerencie sorteios com registro de bilhetes, compradores e comprovantes de pagamento.",
+  title: "Rifa Solidária - Cirurgia no Ombro",
+  description: "Ação beneficente entre amigos para arrecadar fundos para a realização da cirurgia no ombro de Fernando Arcanjo da Costa.",
 };
 
 export default function RootLayout({

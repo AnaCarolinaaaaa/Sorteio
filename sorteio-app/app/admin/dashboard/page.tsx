@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Raffle, Ticket } from '@/lib/types'
-import { Trophy, Ticket as TicketIcon, Users, TrendingUp, Zap, ChevronRight, DollarSign, TrendingDown, BarChart3, Trash2 } from 'lucide-react'
+import { Trophy, Ticket as TicketIcon, Users, TrendingUp, Zap, ChevronRight, DollarSign, TrendingDown, BarChart3, Trash2, Heart } from 'lucide-react'
 import Link from 'next/link'
 
 export default function DashboardPage() {
@@ -143,9 +143,9 @@ export default function DashboardPage() {
 
   if (!raffle) return (
     <div style={{ textAlign: 'center', marginTop: '5rem' }}>
-      <Trophy size={52} color="var(--text-muted)" style={{ marginBottom: '1rem' }} />
-      <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Nenhum sorteio cadastrado ainda.</p>
-      <Link href="/admin/sorteios/novo" className="btn-primary">Criar primeiro sorteio</Link>
+      <Heart size={52} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.8, marginBottom: '1rem' }} />
+      <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Nenhuma rifa solidária cadastrada ainda.</p>
+      <Link href="/admin/sorteios/novo" className="btn-primary">Criar primeira rifa</Link>
     </div>
   )
 
@@ -178,10 +178,10 @@ export default function DashboardPage() {
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.3rem' }}>Dashboard</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Visão geral do sorteio ativo</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Visão geral da rifa solidária ativa</p>
         </div>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <Link href="/admin/sorteios/novo" className="btn-secondary">+ Novo Sorteio</Link>
+          <Link href="/admin/sorteios/novo" className="btn-secondary">+ Nova Rifa</Link>
           <Link href="/admin/bilhetes/registrar" className="btn-primary">+ Registrar Bilhete</Link>
         </div>
       </div>
@@ -207,7 +207,7 @@ export default function DashboardPage() {
                 {drawing ? <div className="spinner" /> : <><Zap size={16} />Realizar Sorteio</>}
               </button>
             )}
-            <button onClick={handleDeleteRaffle} className="btn-danger" title="Apagar sorteio">
+            <button onClick={handleDeleteRaffle} className="btn-danger" title="Apagar rifa">
               <Trash2 size={15} /> Apagar
             </button>
           </div>
@@ -347,7 +347,7 @@ export default function DashboardPage() {
           {[
             { href: '/admin/bilhetes/registrar', label: 'Registrar bilhetes vendidos' },
             { href: '/admin/bilhetes', label: 'Ver todos os bilhetes' },
-            { href: '/admin/sorteios/novo', label: 'Criar novo sorteio' },
+            { href: '/admin/sorteios/novo', label: 'Criar nova rifa solidária' },
           ].map(l => (
             <Link key={l.href} href={l.href} style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',

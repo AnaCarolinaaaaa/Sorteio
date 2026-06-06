@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Lock, Trophy } from 'lucide-react'
+import { Lock, Heart } from 'lucide-react'
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('')
@@ -36,10 +36,10 @@ export default function AdminLoginPage() {
       <div className="glass-card fade-in" style={{ width: '100%', maxWidth: 400, padding: '2.5rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--bg-elevated)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
-            <Trophy size={26} color="var(--gold)" />
+            <Heart size={26} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.9 }} />
           </div>
           <h1 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>Área Administrativa</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.3rem' }}>Faça login para gerenciar o sorteio</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.3rem' }}>Faça login para gerenciar a rifa solidária</p>
         </div>
 
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>

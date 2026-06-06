@@ -3,7 +3,7 @@
 import { useEffect, ReactNode } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, Ticket, PlusCircle, List, LogOut, Trophy, Grid3X3 } from 'lucide-react'
+import { LayoutDashboard, Ticket, PlusCircle, List, LogOut, Trophy, Heart, Grid3X3 } from 'lucide-react'
 
 // Componente para links da Sidebar Desktop
 function SidebarLink({ href, icon, label }: { href: string; icon: ReactNode; label: string }) {
@@ -166,12 +166,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       {/* Sidebar - VISÍVEL APENAS EM DESKTOP */}
       <aside className="admin-sidebar">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0 0.5rem', marginBottom: '1.5rem' }}>
-          <Trophy size={20} color="var(--gold)" />
-          <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)' }}>Admin Sorteio</span>
+          <Heart size={20} color="var(--red)" style={{ fill: 'var(--red)', opacity: 0.9 }} />
+          <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--text-primary)' }}>Admin Rifa</span>
         </div>
 
         <SidebarLink href="/admin/dashboard" icon={<LayoutDashboard size={16} />} label="Dashboard" />
-        <SidebarLink href="/admin/sorteios/novo" icon={<PlusCircle size={16} />} label="Novo Sorteio" />
+        <SidebarLink href="/admin/sorteios/novo" icon={<PlusCircle size={16} />} label="Nova Rifa" />
         <SidebarLink href="/admin/cartela" icon={<Grid3X3 size={16} />} label="Cartela" />
         <SidebarLink href="/admin/bilhetes/registrar" icon={<Ticket size={16} />} label="Registrar Bilhete" />
         <SidebarLink href="/admin/bilhetes" icon={<List size={16} />} label="Bilhetes Vendidos" />
@@ -190,7 +190,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       {/* Floating Bottom Menu - VISÍVEL APENAS EM MOBILE */}
       <nav className="admin-mobile-nav">
         <MobileBottomLink href="/admin/dashboard" icon={<LayoutDashboard size={18} />} label="Painel" />
-        <MobileBottomLink href="/admin/sorteios/novo" icon={<PlusCircle size={18} />} label="Novo" />
+        <MobileBottomLink href="/admin/sorteios/novo" icon={<PlusCircle size={18} />} label="Nova Rifa" />
         <MobileBottomLink href="/admin/cartela" icon={<Grid3X3 size={18} />} label="Cartela" />
         <MobileBottomLink href="/admin/bilhetes/registrar" icon={<Ticket size={18} />} label="Vender" />
         <MobileBottomLink href="/admin/bilhetes" icon={<List size={18} />} label="Vendas" />
